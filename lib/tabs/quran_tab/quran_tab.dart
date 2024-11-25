@@ -127,14 +127,17 @@ class QuranTab extends StatelessWidget {
       children: [
         Image.asset('assets/images/quran_header_icn.png',
         height: MediaQuery.sizeOf(context).height*0.25,),
-        Divider(
-          height: 5,
-          thickness: 2.5,
-          color: Theme.of(context).primaryColor,
-
+        Padding(
+          padding:  EdgeInsets.only(top:MediaQuery.sizeOf(context).height*0.016),
+          child: Divider(
+            height: 5,
+            thickness: 2.5,
+            color: Theme.of(context).primaryColor,
+        
+          ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Text('إسم السورة',style: Theme.of(context).textTheme.titleLarge),
+          Text('إسم السورة',style: Theme.of(context).textTheme.headlineMedium),
           
         ],
 
