@@ -13,6 +13,7 @@ class AppTheme {
     primaryColor: lightPrimary,
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme:  AppBarTheme(
+      foregroundColor: black,
       centerTitle: true,
       elevation: 0,
       toolbarHeight: 75,
@@ -26,7 +27,20 @@ class AppTheme {
       // showSelectedLabels: false,
       selectedItemColor: black,
       unselectedItemColor: white,
-    )
+    ),
+    textTheme: TextTheme(
+      headlineSmall: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w400,
+        color: black,
+
+      ),
+      titleLarge: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: black,
+      ),
+    ),
   );
   
 }
