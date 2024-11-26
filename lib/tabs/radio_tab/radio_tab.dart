@@ -2,11 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:isalmi/app_theme.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:isalmi/tabs/settings_tab/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class RadioTab extends StatelessWidget {
   const RadioTab({super.key});
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Column(
       children: [
         
@@ -17,7 +21,7 @@ class RadioTab extends StatelessWidget {
        
         Padding(
           padding:  EdgeInsets.only(top:MediaQuery.sizeOf(context).height*0.046),
-          child:  Text('إذاعة القرآن الكريم',style:Theme.of(context).textTheme.headlineMedium?.copyWith(color: AppTheme.black) ,),
+          child:  Text(AppLocalizations.of(context)!.sound,style:Theme.of(context).textTheme.headlineMedium?.copyWith(color: settingsProvider.isDark ? AppTheme.white : AppTheme.black,) ,),
         ),
         Padding(
           padding:  EdgeInsets.only(top:MediaQuery.sizeOf(context).height*0.086),
@@ -25,17 +29,17 @@ class RadioTab extends StatelessWidget {
             IconButton(onPressed: (){}, icon: Icon(
               Icons.keyboard_double_arrow_left,
               size: 50,
-              color:  AppTheme.lightPrimary,
+              color:settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
             )),
             IconButton(onPressed: (){}, icon: Icon(
               Icons.play_arrow_rounded,
               size: 50,
-              color:  AppTheme.lightPrimary,
+              color: settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
             )),
             IconButton(onPressed: (){}, icon: Icon(
               Icons.keyboard_double_arrow_right,
               size: 50,
-              color:  AppTheme.lightPrimary,
+              color:settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
             ))
         
           ],

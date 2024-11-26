@@ -42,5 +42,39 @@ class AppTheme {
       ),
     ),
   );
+  static ThemeData darkTheme = ThemeData(
+    primaryColor: darkPrimary,
+    scaffoldBackgroundColor: Colors.transparent,
+    appBarTheme:  AppBarTheme(
+      backgroundColor: Colors.transparent,
+      foregroundColor: white,
+      centerTitle: true,
+      toolbarHeight: 75,
+      elevation: 0,
+      titleTextStyle: TextStyle(
+        color: white,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+    textTheme:  TextTheme(
+      headlineSmall: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w400,
+        color: white,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w400,
+        color: gold,
+      ),
+    ),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: gold,
+      unselectedItemColor: white,
+      backgroundColor: darkPrimary,
+    ),
+  );
   
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:isalmi/app_theme.dart';
 import 'package:isalmi/tabs/hadeth_tab/hadeth.dart';
+import 'package:isalmi/tabs/settings_tab/settings_provider.dart';
 import 'package:isalmi/widget/loading_indicator.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class HadethScreen extends StatefulWidget {
   const HadethScreen({super.key});
@@ -15,16 +18,17 @@ class _HadethScreenState extends State<HadethScreen> {
   @override
    
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
      Hadeth hadeth = ModalRoute.of(context)!.settings.arguments as Hadeth ;
      
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
+              image: AssetImage("assets/images/${settingsProvider.backgroundImageName}.png"),
               fit: BoxFit.fill)),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('إسلامي'),
+          title: Text(AppLocalizations.of(context)!.islami),
         ),
         body: Container(
           padding: const EdgeInsets.all(15),
@@ -32,23 +36,24 @@ class _HadethScreenState extends State<HadethScreen> {
               vertical: MediaQuery.sizeOf(context).height * 0.1,
               horizontal: MediaQuery.sizeOf(context).width * 0.086),
           decoration: BoxDecoration(
-              color: AppTheme.white, borderRadius: BorderRadius.circular(25)),
+              color:settingsProvider.isDark ? AppTheme.darkPrimary : AppTheme.white, borderRadius: BorderRadius.circular(25)),
               
           child: Column(
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                 Text(hadeth.title,
-                style:Theme.of(context).textTheme.headlineSmall,
+                style:Theme.of(context).textTheme.headlineSmall?.copyWith(color: settingsProvider.isDark ? AppTheme.white : AppTheme.black,),
                 //selectionColor:AppTheme.black
                 ),
-               const Icon(Icons.play_circle,size: 30,),
+                Icon(Icons.play_circle,size: 30,
+               color: settingsProvider.isDark ? AppTheme.white : AppTheme.black,),
 
               ],),
               Divider(
                 height: 7,
                 thickness: 2.5,
-                color:Theme.of(context).primaryColor ,
+                color:settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary ,
               ),
               Expanded(
                child: (hadeth.content.isEmpty == true)?const LoadingIndicator()

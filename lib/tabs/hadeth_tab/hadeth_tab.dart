@@ -2,9 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:isalmi/app_theme.dart';
 import 'package:isalmi/tabs/hadeth_tab/hadeth.dart';
 import 'package:isalmi/tabs/hadeth_tab/hadeth_screen.dart';
-//import 'package:isalmi/tabs/hadeth_tab/hadeth_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../settings_tab/settings_provider.dart';
 
 
 class HadethTab extends StatefulWidget {
@@ -19,6 +23,7 @@ class _HadethTabState extends State<HadethTab> {
 
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     if (ahadeth.isEmpty){
     loadHadethFile();
     }
@@ -27,21 +32,20 @@ class _HadethTabState extends State<HadethTab> {
         Image.asset('assets/images/hadith_header.png',
         height: MediaQuery.sizeOf(context).height*0.25,),
         Divider(
-          height: 5,
+          height: 25,
           thickness: 2.5,
-          color: Theme.of(context).primaryColor,
-
+          color: settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Text('الأحاديث',style: Theme.of(context).textTheme.headlineMedium),
+          Text(AppLocalizations.of(context)!.ahadeth,style: Theme.of(context).textTheme.headlineSmall),
           
         ],
 
         ),
           Divider(
-          height: 5,
+          height: 25,
           thickness: 2.5,
-          color: Theme.of(context).primaryColor,
+          color: settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
 
         ),
         Expanded(child: ListView.builder(padding: const EdgeInsets.only(top: 15),

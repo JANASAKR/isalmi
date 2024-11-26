@@ -1,7 +1,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:isalmi/app_theme.dart';
 import 'package:isalmi/tabs/quran_tab/sura_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:isalmi/tabs/settings_tab/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 class QuranTab extends StatelessWidget {
   QuranTab({super.key});
@@ -123,6 +127,7 @@ class QuranTab extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
     return Column(
       children: [
         Image.asset('assets/images/quran_header_icn.png',
@@ -130,25 +135,25 @@ class QuranTab extends StatelessWidget {
         Padding(
           padding:  EdgeInsets.only(top:MediaQuery.sizeOf(context).height*0.016),
           child: Divider(
-            height: 5,
+            height: 25,
             thickness: 2.5,
-            color: Theme.of(context).primaryColor,
+            color: settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
         
           ),
         ),
         Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-          Text('إسم السورة',style: Theme.of(context).textTheme.headlineMedium),
+          Text(AppLocalizations.of(context)!.sura,style: Theme.of(context).textTheme.headlineSmall?.copyWith(color:settingsProvider.isDark ? AppTheme.white : AppTheme.black,),),
           
         ],
 
         ),
           Divider(
-          height: 5,
+          height: 25,
           thickness: 2.5,
-          color: Theme.of(context).primaryColor,
+          color: settingsProvider.isDark ? AppTheme.gold : AppTheme.lightPrimary,
 
         ),
-        Expanded(child: ListView.builder(padding: EdgeInsets.only(top: 15),
+        Expanded(child: ListView.builder(padding: const EdgeInsets.only(top: 15),
           itemBuilder: (context, index) => GestureDetector(
           onTap: () => Navigator.of(context).pushNamed(SuraScreen.routeName,
           arguments: SuraScreenArgs(index: index, suraName: suraName[index])
